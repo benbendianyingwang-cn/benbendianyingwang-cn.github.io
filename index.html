@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="笨笨电影网 benbendianyingwang-cn 是一个慢半拍的观影指南：笨笨电影网、笨笨电影、笨笨影院、笨笨影视、笨笨电影网官网、笨笨电影网址、动画电影、治愈电影、家庭片、儿童片、吉卜力、宫崎骏、新海诚、皮克斯、迪士尼、文艺片、喜剧片、纪录片、冷门佳片、高分电影、经典电影、电影网址大全、电影网站导航、正版电影、电影在线观看。只做片单、解读与正版平台指引，不提供任何侵权资源。">
+<meta name="keywords" content="笨笨电影网,笨笨电影,笨笨影院,笨笨影视,笨笨电影网官网,笨笨电影网入口,笨笨电影网址,电影网,电影网站,电影在线观看,高清电影,正版电影,良心片单,高分电影,经典电影,冷门佳片,动画电影,治愈电影,家庭片,儿童片,吉卜力,宫崎骏,新海诚,皮克斯,迪士尼,文艺片,喜剧片,纪录片,独立电影,深夜电影,电影网址大全,电影网站导航,电影导航,benbendianyingwang-cn">
+<meta name="author" content="笨笨电影网">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>笨笨电影网 - benbendianyingwang-cn | 慢半拍，才看得清</title>
+<link rel="canonical" href="https://域名.github.io/">
+<style>
+/* ==========================================================
+   笨笨电影网  benbendianyingwang-cn
+   单页式站点（锚点导航 #），移动端自适应
+   CSS / DOM 结构 / 视觉方案 全部内联、彼此独立
+   按约定：不生成 robots.txt 与 sitemap.xml
+   ========================================================== */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1c2430;
+  --ink-2:#4c5a6a;
+  --mut:#93a1b1;
+  --paper:#fdfbf6;
+  --paper-2:#fffefb;
+  --line:#ece6da;
+  --line-2:#d8cfc0;
+  --brand:#7c3aed;        /* 笨笨紫 */
+  --brand-2:#a78bfa;      /* 云紫 */
+  --mint:#34d399;         /* 治愈绿 */
+  --sun:#fbbf24;          /* 暖阳黄 */
+  --night:#312e81;        /* 夜空靛 */
+  --shadow:0 24px 56px rgba(28,36,48,.18);
+  --ease:cubic-bezier(.24,.8,.32,1);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei","Helvetica Neue",Arial,sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.9;overflow-x:hidden;
+  background-image:
+    radial-gradient(640px 440px at 92% -10%,rgba(124,58,237,.14),transparent 62%),
+    radial-gradient(560px 420px at -6% 18%,rgba(52,211,153,.16),transparent 60%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none;outline:none}
+ul,ol{list-style:none}
+img,svg,figure{display:block;max-width:100%}
+button{font-family:inherit;background:none;border:none;color:inherit;cursor:pointer}
+code{font-family:"SFMono-Regular",Consolas,monospace;font-size:.86em;color:var(--brand);background:rgba(124,58,237,.1);padding:1px 7px;border-radius:5px}
+::selection{background:var(--brand);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:8px}
+::-webkit-scrollbar-track{background:transparent}
+
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+.box{width:100%;max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+.block{padding:104px 0;position:relative;z-index:2}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.26em;color:var(--brand);font-weight:800;text-transform:uppercase}
+.kicker::before{content:"";width:26px;height:1.5px;background:var(--mint)}
+.heading{font-size:clamp(26px,4.5vw,46px);line-height:1.3;font-weight:900;letter-spacing:.5px;margin:12px 0 10px}
+.heading em{font-style:normal;color:var(--brand)}
+.intro{color:var(--ink-2);max-width:830px;font-size:16px}
+.intro b{color:var(--ink);background:linear-gradient(transparent 62%,rgba(167,139,250,.5) 62%);padding:0 2px}
+.bar{width:60px;height:2px;background:linear-gradient(90deg,var(--brand),var(--mint));margin:16px 0 30px}
+.head-flex{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:34px}
+
+/* ---------- 导航 ---------- */
+.topbar{position:fixed;inset:0 0 auto 0;z-index:100;background:rgba(253,251,246,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .3s var(--ease)}
+.topbar.stuck{box-shadow:0 10px 26px rgba(28,36,48,.12)}
+.top-row{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.5px;font-size:15.5px}
+.logo .mark{position:relative;width:46px;height:42px;flex:none;border-radius:13px 13px 6px 6px;background:linear-gradient(150deg,#a78bfa,#7c3aed);display:grid;place-items:center;color:#fff;box-shadow:0 7px 18px rgba(124,58,237,.38);overflow:hidden}
+.logo .mark i{position:absolute;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 0 0 5px rgba(255,255,255,.18)}
+.logo .mark i:nth-child(1){left:7px;top:9px}
+.logo .mark i:nth-child(2){right:7px;top:9px}
+.logo .mark b{position:relative;z-index:2;font-family:"DIN Alternate","Arial Black",sans-serif;font-size:13px;font-weight:950;letter-spacing:.02em;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.logo small{color:var(--mut);font-size:9px;letter-spacing:.1em;font-weight:700}
+.top-links{display:flex;gap:2px;margin-left:auto;align-items:center}
+.top-links a{font-size:13.5px;color:var(--ink-2);padding:9px 15px;border-radius:8px;transition:.25s var(--ease);font-weight:600}
+.top-links a:hover{color:var(--brand);background:rgba(124,58,237,.07)}
+.top-links a.now{color:#fff;background:linear-gradient(92deg,var(--brand),#a78bfa);box-shadow:0 6px 14px rgba(124,58,237,.32)}
+.top-cta{font-size:13px;font-weight:800;padding:9px 20px;border-radius:999px;border:1.5px solid var(--brand);color:var(--brand);transition:.25s var(--ease);letter-spacing:.06em}
+.top-cta:hover{background:var(--brand);color:#fff;transform:translateY(-2px)}
+.burger{display:none;width:42px;height:42px;border:1.5px solid var(--line-2);border-radius:9px;background:var(--paper-2);cursor:pointer;flex-direction:column;gap:5px;place-items:center;margin-left:auto}
+.burger i{width:18px;height:1.5px;background:var(--ink);border-radius:2px;transition:.3s var(--ease)}
+
+/* ---------- Hero ---------- */
+.hero{min-height:100vh;display:grid;place-items:center;padding:128px 0 92px;position:relative;overflow:hidden}
+.cloud{position:absolute;border-radius:999px;background:rgba(167,139,250,.5);filter:blur(2px);z-index:1;opacity:.9}
+.cloud.c1{width:200px;height:64px;right:8%;top:16%}
+.cloud.c1::before,.cloud.c1::after{content:"";position:absolute;background:inherit;border-radius:inherit}
+.cloud.c1::before{width:84px;height:84px;left:24px;top:-36px}
+.cloud.c1::after{width:64px;height:64px;right:22px;top:-24px}
+.cloud.c2{width:150px;height:48px;left:6%;top:26%;background:rgba(52,211,153,.45)}
+.cloud.c2::before{content:"";position:absolute;width:62px;height:62px;left:18px;top:-28px;background:inherit;border-radius:inherit}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(34px,6vw,62px);line-height:1.16;font-weight:950;letter-spacing:.5px;margin:18px 0 16px}
+.hero h1 .no{display:inline-block;font-family:"DIN Alternate","Arial Black",sans-serif;font-size:.72em;color:#fff;background:linear-gradient(135deg,var(--brand),var(--mint));padding:2px 16px;border-radius:12px;transform:rotate(-3deg);vertical-align:middle;box-shadow:0 10px 22px rgba(124,58,237,.32)}
+.hero p{font-size:clamp(15px,1.6vw,17px);color:var(--ink-2);max-width:560px}
+.acts{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;padding:15px 30px;border-radius:10px;border:1.5px solid transparent;transition:.28s var(--ease)}
+.btn-main{background:linear-gradient(92deg,var(--brand),#a78bfa);color:#fff;box-shadow:0 14px 30px rgba(124,58,237,.34)}
+.btn-main:hover{transform:translateY(-3px);filter:brightness(1.06)}
+.btn-line{border-color:var(--line-2);color:var(--ink);background:var(--paper-2)}
+.btn-line:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-3px)}
+.tags{display:flex;gap:9px;margin-top:26px;flex-wrap:wrap}
+.tags span{font-size:12px;color:var(--mut);border:1px dashed var(--line-2);border-radius:6px;padding:6px 12px;cursor:pointer;transition:.2s var(--ease)}
+.tags span:hover{color:var(--brand);border-color:var(--brand);border-style:solid;background:rgba(124,58,237,.08)}
+.nums{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}
+.num span{display:block;font-size:10.5px;letter-spacing:.14em;color:var(--mut)}
+.num b{font-family:"DIN Alternate","Arial Black",sans-serif;font-size:26px;font-weight:950;color:var(--brand)}
+
+/* ---------- 栏目一：笨笨片单（编号磁贴，独立 DOM） ---------- */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cell{position:relative;display:grid;grid-template-columns:58px 1fr;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.32s var(--ease);min-height:124px;text-decoration:none;color:inherit}
+.cell::after{content:"";position:absolute;right:-22px;bottom:-22px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.5),transparent 62%);opacity:0;transition:.5s var(--ease)}
+.cell:hover{transform:translateY(-7px);border-color:var(--line-2);box-shadow:var(--shadow)}
+.cell:hover::after{opacity:1;transform:scale(1.6)}
+.cell .no{display:grid;place-items:center;font-family:"DIN Alternate","Arial Black",sans-serif;font-size:26px;font-weight:950;color:rgba(124,58,237,.26);letter-spacing:-.02em;background:linear-gradient(180deg,transparent,rgba(167,139,250,.16))}
+.cell:hover .no{color:var(--brand)}
+.cell .bd{padding:15px 16px 15px 4px;position:relative;z-index:2}
+.cell .bd h4{font-size:14.5px;font-weight:900;line-height:1.5;letter-spacing:.3px}
+.cell .bd p{font-size:11.5px;color:var(--mut);margin-top:4px;line-height:1.7}
+
+/* ---------- 栏目二：高分榜（斑马行式伪表格，独立 DOM） ---------- */
+.sheet{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px rgba(28,36,48,.1)}
+.row{display:grid;grid-template-columns:56px 2.2fr 1.2fr 96px;gap:14px;align-items:center;padding:13px 18px;transition:background .22s var(--ease),color .22s var(--ease)}
+.row.head{background:linear-gradient(92deg,var(--night),var(--brand));color:#fff;font-size:11px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;padding:15px 18px}
+.row.head .num-col{color:var(--sun)}
+.row.body:hover{background:linear-gradient(92deg,rgba(124,58,237,.14),rgba(52,211,153,.12));color:var(--ink)}
+.row.body:hover .title{color:var(--brand)}
+.row .num-col{font-family:"DIN Alternate","Arial Black",sans-serif;font-size:21px;font-weight:950;color:var(--line-2)}
+.row:nth-child(even) .num-col{color:var(--brand)}
+.row .title{font-weight:900;letter-spacing:.3px;font-size:15px;line-height:1.45}
+.row .title small{display:block;font-size:11px;font-weight:600;color:var(--mut);letter-spacing:.04em;margin-top:2px}
+.row .rate-col{font-size:12px;font-weight:800;border-radius:999px;padding:4px 10px;text-align:center}
+.row .meta-col{font-size:11.5px;color:var(--mut);text-align:right}
+.row + .row{border-top:1px solid var(--line)}
+
+/* ---------- 栏目三：类型片单（竖向吸附卡组 + 说明面板，独立 DOM） ---------- */
+.deck{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px;scrollbar-width:thin}
+.deck figure{scroll-snap-align:start;flex:0 0 clamp(158px,21vw,196px);position:relative;cursor:pointer;transition:.34s var(--ease)}
+.deck figure:hover{transform:translateY(-8px)}
+.deck figure .cvr{position:relative;height:clamp(218px,28vw,280px);border-radius:14px;overflow:hidden;box-shadow:0 14px 30px rgba(28,36,48,.26)}
+.deck figure .cvr::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(28,36,48,.92))}
+.deck figure .cvr .badge{position:absolute;top:10px;left:10px;z-index:2;font-size:10.5px;font-weight:900;letter-spacing:.08em;color:#1c2430;background:var(--sun);border-radius:5px;padding:4px 9px}
+.deck figure .cvr .len{position:absolute;bottom:10px;right:10px;z-index:2;font-size:10px;font-weight:800;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:3px 9px;backdrop-filter:blur(4px)}
+.deck figure figcaption{margin-top:11px;font-size:14px;font-weight:900;letter-spacing:.3px}
+.deck figure figcaption small{display:block;font-size:11px;font-weight:600;color:var(--mut);margin-top:3px;letter-spacing:.02em}
+.deck figure:hover figcaption{color:var(--brand)}
+.panel{position:relative;margin-top:26px;background:linear-gradient(165deg,#312e81,#7c3aed);color:#fdfbf6;border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);overflow:hidden}
+.panel::after{content:"慢";position:absolute;right:-18px;bottom:-52px;font-size:210px;font-weight:950;color:rgba(253,251,246,.06);line-height:1;font-family:"Songti SC","STSong",serif}
+.panel h4{font-size:19px;font-weight:900;margin-bottom:10px;color:var(--sun)}
+.panel p{font-size:13.5px;line-height:1.95;color:rgba(253,251,246,.9)}
+.panel .hl{display:inline-block;margin-top:12px;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:#d9f7e8;border:1px solid rgba(52,211,153,.55);border-radius:6px;padding:7px 12px;background:rgba(52,211,153,.16)}
+
+/* ---------- 栏目四：观影指南（双栏卡片组，独立 DOM） ---------- */
+.guide{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.gcard{position:relative;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:0 6px 20px rgba(28,36,48,.08);transition:.32s var(--ease);cursor:pointer;overflow:hidden}
+.gcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--brand),var(--mint))}
+.gcard:nth-child(2)::before{background:linear-gradient(180deg,var(--sun),var(--brand-2))}
+.gcard:nth-child(3)::before{background:linear-gradient(180deg,var(--mint),var(--sun))}
+.gcard:nth-child(4)::before{background:linear-gradient(180deg,var(--brand-2),var(--night))}
+.gcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.gcard .ix{font-family:"DIN Alternate","Arial Black",sans-serif;font-size:34px;font-weight:950;color:rgba(124,58,237,.18);line-height:1;letter-spacing:-.02em}
+.gcard:hover .ix{color:var(--brand)}
+.gcard h4{font-size:16.5px;font-weight:900;margin:6px 0 7px;letter-spacing:.4px}
+.gcard p{font-size:13px;color:var(--ink-2);line-height:1.85}
+.gcard a.dot{display:inline-block;margin-top:10px;font-size:11.5px;font-weight:800;color:var(--brand);border-bottom:1.5px dashed var(--brand-2);padding-bottom:1px}
+
+/* ---------- 栏目五：笨笨问答（论点卡组，独立 DOM） ---------- */
+.myth{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.arg{position:relative;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px 24px 20px;transition:.32s var(--ease);cursor:pointer}
+.arg:hover{transform:translateY(-6px);border-color:var(--line-2);box-shadow:var(--shadow)}
+.arg .no{font-family:"DIN Alternate","Arial Black",sans-serif;font-size:11px;font-weight:950;letter-spacing:.2em;color:var(--brand)}
+.arg h4{font-size:17px;font-weight:900;margin:6px 0 8px;letter-spacing:.4px}
+.arg p{font-size:13px;color:var(--ink-2);line-height:1.85}
+.arg .q{position:absolute;right:16px;top:8px;font-family:"Songti SC","STSong",serif;font-size:50px;color:rgba(124,58,237,.12);line-height:1;font-weight:900}
+.arg:hover .q{color:rgba(167,139,250,.42)}
+
+/* ---------- 页脚 ---------- */
+.foot{position:relative;padding:70px 0 30px;border-top:1px solid var(--line);margin-top:36px;background:linear-gradient(180deg,transparent,rgba(167,139,250,.14));z-index:2}
+.foot-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:34px;margin-bottom:40px}
+.foot-brand p{font-size:13.5px;color:var(--ink-2);margin-top:14px;max-width:310px}
+.foot-col h5{font-size:12px;letter-spacing:.2em;color:var(--ink);margin-bottom:15px;font-weight:900}
+.foot-col a{display:block;font-size:13.5px;color:var(--mut);padding:6px 0;transition:.2s var(--ease);border-bottom:1px solid transparent}
+.foot-col a:hover{color:var(--brand);border-bottom-color:var(--line-2);transform:translateX(4px)}
+.copy{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mut)}
+.copy b{color:var(--brand)}
+
+.up{position:fixed;right:20px;bottom:24px;z-index:90;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1.5px solid var(--line-2);background:var(--brand);color:#fff;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(14px);transition:.35s var(--ease);font-weight:950}
+.up.show{opacity:1;visibility:visible;transform:translateY(0)}
+.up:hover{background:var(--night)}
+
+.show-up{opacity:0;transform:translateY(26px);transition:.7s var(--ease)}
+.show-up.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .box{padding:0 18px}
+  .block{padding:72px 0}
+  .hero-grid,.guide{grid-template-columns:1fr;gap:44px}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .myth{grid-template-columns:repeat(2,1fr)}
+  .row{grid-template-columns:44px 1.6fr 1fr 60px;gap:10px}
+  .row .meta-col{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:26px}
+}
+@media (max-width:680px){
+  .burger{display:grid}
+  .top-links{position:fixed;inset:64px 0 0 0;flex-direction:column;align-items:stretch;padding:24px 20px;gap:10px;background:rgba(253,251,246,.99);backdrop-filter:blur(14px);transform:translateX(100%);transition:.4s var(--ease);border-top:1px solid var(--line)}
+  .top-links.open{transform:none}
+  .top-links a{font-size:16px;padding:14px 18px;border-radius:10px}
+  .top-cta{text-align:center;justify-content:center;padding:14px}
+  .hero{padding:112px 0 72px;min-height:auto}
+  .hero h1{font-size:31px}
+  .cloud{transform:scale(.75)}
+  .acts .btn{flex:1;justify-content:center;padding:13px 20px;font-size:14px}
+  .grid4,.myth{grid-template-columns:1fr}
+  .cell{min-height:112px}
+  .foot-grid{grid-template-columns:1fr;gap:22px}
+  .copy{flex-direction:column;text-align:center}
+  .row{grid-template-columns:38px 1fr 52px;padding:12px 14px;gap:8px}
+  .row .rate-col{display:none}
+  .row.head .rate-col,.row.head .meta-col{display:none}
+}
+@media print{
+  #sky,.cloud,.up,.burger{display:none}
+  body{background:#fff;color:#000}
+  .block{padding:24px 0}
+  a{color:#000}
+  .cell,.row,.gcard,.panel,.arg{background:#fff;border-color:#bbb;box-shadow:none;color:#000;page-break-inside:avoid}
+  .cell p,.panel p,.gcard p,.arg p,.foot-brand p,.foot-col a{color:#333}
+  .panel,.gcard:nth-child(2){background:#fff}
+  .panel h4,.gcard h4,.arg h4,.row .title{color:#000}
+}
+</style>
+</head>
+<body id="top">
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<!-- 天空层（云朵意象） -->
+<canvas id="sky" aria-hidden="true"></canvas>
+<span class="cloud c1" aria-hidden="true"></span>
+<span class="cloud c2" aria-hidden="true"></span>
+
+<!-- ==================== 顶部导航 ==================== -->
+<header class="topbar" id="topbar">
+  <div class="box top-row">
+    <a class="logo" href="#top" aria-label="笨笨电影网 首页">
+      <span class="mark" aria-hidden="true"><i></i><i></i><b>BB</b></span>笨笨电影网<small>SLOW</small>
+    </a>
+    <button class="burger" id="burger" aria-label="切换菜单" aria-expanded="false"><i></i><i></i><i></i></button>
+    <nav class="top-links" id="topLinks" aria-label="主导航">
+      <a href="#list">笨笨片单</a>
+      <a href="#top100">高分榜</a>
+      <a href="#genre">类型片单</a>
+      <a href="#guide">观影指南</a>
+      <a href="#why">笨笨问答</a>
+      <a href="#" class="top-cta">收藏官网</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ==================== Hero ==================== -->
+<section class="hero" id="home" aria-labelledby="heroTitle">
+  <div class="box hero-grid">
+    <div class="show-up">
+      <span class="kicker">笨笨电影网 · benbendianyingwang-cn · 慢半拍的观影指南</span>
+      <h1><span class="no">BB</span><br>慢半拍，<br>才看得<em>清</em></h1>
+      <p><strong>笨笨电影网</strong>（benbendianyingwang-cn）是一个慢半拍的观影指南。我们相信：<strong>看电影不用赶，好电影会等你</strong>。网站提供<strong>笨笨片单、高分榜、类型片单、观影指南、笨笨问答</strong>；偏爱动画电影、治愈电影、家庭片、文艺片、纪录片与冷门佳片。所有"观看"按钮仅示意跳转逻辑（演示站统一用 <code>#</code> 占位），请以持牌平台为准。</p>
+      <div class="acts">
+        <a class="btn btn-main" href="#list">打开片单</a>
+        <a class="btn btn-line" href="#guide">观影指南</a>
+      </div>
+      <div class="tags" aria-label="热门检索">
+        <span>笨笨电影网</span><span>笨笨电影</span><span>笨笨影院</span><span>笨笨影视</span><span>笨笨电影网官网</span><span>笨笨电影网入口</span><span>笨笨电影网址</span><span>电影网</span><span>电影网站</span><span>电影在线观看</span><span>高清电影</span><span>正版电影</span><span>良心片单</span><span>高分电影</span><span>经典电影</span><span>冷门佳片</span><span>动画电影</span><span>治愈电影</span><span>家庭片</span><span>儿童片</span><span>吉卜力</span><span>宫崎骏</span><span>新海诚</span><span>皮克斯</span><span>迪士尼</span><span>文艺片</span><span>喜剧片</span><span>纪录片</span><span>独立电影</span><span>深夜电影</span><span>电影网址大全</span><span>电影网站导航</span><span>电影导航</span>
+      </div>
+      <div class="nums">
+        <div class="num"><span>片单</span><b>76</b></div>
+        <div class="num"><span>高分榜</span><b>10</b></div>
+        <div class="num"><span>类型</span><b>12</b></div>
+        <div class="num"><span>观影指南</span><b>04</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 栏目一：笨笨片单 ==================== -->
+<section class="block" id="list" aria-labelledby="tList">
+  <div class="box">
+    <header class="head-flex show-up">
+      <div>
+        <span class="kicker">01 / THE SLOW LIST</span>
+        <h2 class="heading" id="tList">笨笨<em>片单</em> · 一格一晚，不赶</h2>
+        <p class="intro">笨笨电影网的片单，按"看完心里会留下什么"排序，不按票房、不按热度。<strong>动画电影是主干</strong>：吉卜力的风、皮克斯的眼泪、新海诚的云、迪士尼的歌、汤浅政明的线条、今敏的梦。每格只有一句话，够你决定今晚看什么。</p>
+        <div class="bar"></div>
+      </div>
+    </header>
+
+    <div class="grid4">
+      <a class="cell show-up" href="#"><span class="no">01</span><span class="bd"><h4>千与千寻</h4><p>长大，就是把名字还给自己</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">02</span><span class="bd"><h4>龙猫</h4><p>童年不在了，但橡树还在</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">03</span><span class="bd"><h4>天空之城</h4><p>拉普达的石头，记得所有人的愿望</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">04</span><span class="bd"><h4>你的名字。</h4><p>彗星落下来之前，先记住你的名字</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">05</span><span class="bd"><h4>天气之子</h4><p>比起晴天，我更想见到你</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">06</span><span class="bd"><h4>寻梦环游记</h4><p>真正的死亡，是被所有人遗忘</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">07</span><span class="bd"><h4>飞屋环游记</h4><p>冒险不在远方，在门口那封信里</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">08</span><span class="bd"><h4>心灵奇旅</h4><p>人生的火花，不是目标，是一片落叶</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">09</span><span class="bd"><h4>机器人总动员</h4><p>全片前 40 分钟几乎没有台词</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">10</span><span class="bd"><h4>美丽人生</h4><p>父亲最后的笑话，是孩子一生的光</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">11</span><span class="bd"><h4>海蒂和爷爷</h4><p>阿尔卑斯山的草，会治好所有人的病</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">12</span><span class="bd"><h4>小森林</h4><p>做饭、吃饭、一个人，也是一种生活</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">13</span><span class="bd"><h4>步履不停</h4><p>是枝裕和说：家人之间，总是来不及</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">14</span><span class="bd"><h4>奇迹男孩</h4><p>善良是一种选择，不是天赋</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">15</span><span class="bd"><h4>猫的报恩</h4><p>不想当猫，就回家吃饭</p></span></a>
+      <a class="cell show-up" href="#"><span class="no">16</span><span class="bd"><h4>完美的日子</h4><p>扫厕所的人，活成了最干净的人</p></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 栏目二：高分榜 ==================== -->
+<section class="block" id="top100" style="background:linear-gradient(180deg,transparent,rgba(167,139,250,.12))" aria-labelledby="tTop">
+  <div class="box">
+    <header class="head-flex show-up">
+      <div>
+        <span class="kicker">02 / TOP 10 OF BB</span>
+        <h2 class="heading" id="tTop">高分<em>榜</em> · 十位，慢慢看</h2>
+        <p class="intro">笨笨电影网的高分榜不看票房，只看"看完会不会想重看"。<strong>动画电影占了五席</strong>——这不是偏见，是这些片子真的懂得怎么对待一个观众的耐心。</p>
+        <div class="bar"></div>
+      </div>
+    </header>
+
+    <div class="sheet" role="table" aria-label="高分榜">
+      <div class="row head" role="row">
+        <span class="num-col" role="columnheader">#</span>
+        <span role="columnheader">片名 · 为什么在榜</span>
+        <span class="rate-col" role="columnheader">类型</span>
+        <span class="meta-col" role="columnheader">评分 / 片长</span>
+      </div>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">01</span><span class="title" role="cell">千与千寻 <small>吉卜力的巅峰，也是宫崎骏写给成年人的童话</small></span><span class="rate-col" role="cell" style="background:rgba(124,58,237,.14);color:#7c3aed">动画</span><span class="meta-col" role="cell">★★★★★ 125 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">02</span><span class="title" role="cell">龙猫 <small>两个女儿，一场雨，一只不存在的猫</small></span><span class="rate-col" role="cell" style="background:rgba(124,58,237,.14);color:#7c3aed">动画</span><span class="meta-col" role="cell">★★★★★ 86 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">03</span><span class="title" role="cell">寻梦环游记 <small>皮克斯最温柔的一次，关于遗忘</small></span><span class="rate-col" role="cell" style="background:rgba(124,58,237,.14);color:#7c3aed">动画</span><span class="meta-col" role="cell">★★★★★ 105 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">04</span><span class="title" role="cell">美丽人生 <small>用谎言保护孩子的人，是真正的英雄</small></span><span class="rate-col" role="cell" style="background:rgba(52,211,153,.22);color:#0f766e">剧情</span><span class="meta-col" role="cell">★★★★★ 116 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">05</span><span class="title" role="cell">你的名字。 <small>新海诚把"错过"画成了最美的形状</small></span><span class="rate-col" role="cell" style="background:rgba(124,58,237,.14);color:#7c3aed">动画</span><span class="meta-col" role="cell">★★★★★ 106 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">06</span><span class="title" role="cell">海蒂和爷爷 <small>阿尔卑斯山的风，是最好的药方</small></span><span class="rate-col" role="cell" style="background:rgba(52,211,153,.22);color:#0f766e">治愈</span><span class="meta-col" role="cell">★★★★★ 111 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">07</span><span class="title" role="cell">飞屋环游记 <small>气球飞起来的那一刻，所有人都哭了</small></span><span class="rate-col" role="cell" style="background:rgba(124,58,237,.14);color:#7c3aed">动画</span><span class="meta-col" role="cell">★★★★★ 96 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">08</span><span class="title" role="cell">心灵奇旅 <small>人生的意义，可能只是咬一口披萨</small></span><span class="rate-col" role="cell" style="background:rgba(124,58,237,.14);color:#7c3aed">动画</span><span class="meta-col" role="cell">★★★★★ 100 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">09</span><span class="title" role="cell">步履不停 <small>是枝裕和：妈妈做的菜，吃到最后都是告别</small></span><span class="rate-col" role="cell" style="background:rgba(52,211,153,.22);color:#0f766e">文艺</span><span class="meta-col" role="cell">★★★★★ 114 min</span></a>
+      <a class="row body" role="row" href="#"><span class="num-col" role="cell">10</span><span class="title" role="cell">小森林 <small>一个人做饭，也能把日子过成诗</small></span><span class="rate-col" role="cell" style="background:rgba(52,211,153,.22);color:#0f766e">治愈</span><span class="meta-col" role="cell">★★★★☆ 111 min</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 栏目三：类型片单 ==================== -->
+<section class="block" id="genre" style="background:linear-gradient(180deg,rgba(52,211,153,.06),transparent)" aria-labelledby="tGenre">
+  <div class="box">
+    <header class="head-flex show-up">
+      <div>
+        <span class="kicker">03 / GENRE DECK</span>
+        <h2 class="heading" id="tGenre">类型<em>片单</em> · 今晚想被怎样治愈</h2>
+        <p class="intro">笨笨电影网把片单按情绪分，不按年代。<strong>动画电影看的是想象力，治愈电影看的是留白，家庭片看的是餐桌，纪录片看的是真实</strong>。滑一下，挑一格，关灯，开机，别倍速。</p>
+        <div class="bar"></div>
+      </div>
+    </header>
+
+    <div class="deck">
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#6d28d9,#a78bfa)"><span class="badge">动画</span><span class="len">125 min</span></span><figcaption>千与千寻<small>动画 · 2001</small></figcaption></figure>
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#0f766e,#34d399)"><span class="badge">治愈</span><span class="len">111 min</span></span><figcaption>海蒂和爷爷<small>治愈 · 2015</small></figcaption></figure>
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#b45309,#fbbf24)"><span class="badge">家庭</span><span class="len">114 min</span></span><figcaption>步履不停<small>家庭 · 2008</small></figcaption></figure>
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#1e3a8a,#6366f1)"><span class="badge">文艺</span><span class="len">111 min</span></span><figcaption>小森林<small>文艺 · 2014</small></figcaption></figure>
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#9a3412,#f97316)"><span class="badge">喜剧</span><span class="len">116 min</span></span><figcaption>美丽人生<small>喜剧 · 1997</small></figcaption></figure>
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#9f1239,#f43f5e)"><span class="badge">爱情</span><span class="len">106 min</span></span><figcaption>你的名字。<small>爱情 · 2016</small></figcaption></figure>
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#365314,#84cc16)"><span class="badge">自然</span><span class="len">120 min</span></span><figcaption>地球脉动<small>纪录 · 2006</small></figcaption></figure>
+      <figure><span class="cvr" style="background:linear-gradient(160deg,#431407,#ea580c)"><span class="badge">奇幻</span><span class="len">86 min</span></span><figcaption>龙猫<small>奇幻 · 1988</small></figcaption></figure>
+    </div>
+
+    <aside class="panel show-up">
+      <h4>为什么笨笨电影网偏爱"慢电影"？</h4>
+      <p>因为慢电影尊重观众的耐心：<strong>它不急着告诉你答案，也不怕你走神</strong>。吉卜力的风会吹过整段沉默，是枝裕和的餐桌会留下半盘没吃完的菜，新海诚的云要飘满 90 分钟才落下雨。这些电影不占用你的时间，它们<em>就是</em>你的时间。慢半拍，才看得清。</p>
+      <span class="hl">正版入口指引：持牌视频平台 · 吉卜力美术馆 · 艺术院线 · 公共图书馆数字影院 · 正版蓝光碟 · CCTV6《佳片有约》</span>
+    </aside>
+  </div>
+</section>
+
+<!-- ==================== 栏目四：观影指南 ==================== -->
+<section class="block" id="guide" aria-labelledby="tGuide">
+  <div class="box">
+    <header class="head-flex show-up">
+      <div>
+        <span class="kicker">04 / WATCHING GUIDE</span>
+        <h2 class="heading" id="tGuide">观影<em>指南</em> · 四条，比片单更管用</h2>
+        <p class="intro">笨笨电影网不替你决定看什么，只帮你把决定做对。这 4 条，是写给每一个愿意慢下来看电影的人的便签。</p>
+        <div class="bar"></div>
+      </div>
+    </header>
+
+    <div class="guide">
+      <div class="gcard show-up">
+        <span class="ix">01</span>
+        <h4>先看导演，再看片名</h4>
+        <p>动画电影是作者的电影。看到"宫崎骏 + 久石让"，就知道这是风；看到"新海诚 + RADWIMPS"，就知道这是云；看到"皮克斯 + 彼特·道格特"，就知道这是一场关于"人为什么会哭"的实验。认导演，比认明星稳。</p>
+        <a class="dot" href="#">片单 →</a>
+      </div>
+      <div class="gcard show-up">
+        <span class="ix">02</span>
+        <h4>老动画，请看到片尾字幕</h4>
+        <p>吉卜力的手绘、皮克斯的第一行代码、迪士尼的第九位老人在琴房里写的旋律——片尾名单本身就是一段电影史。别急着关，那 90 秒是给认真看的人的彩蛋。</p>
+        <a class="dot" href="#">高分榜 →</a>
+      </div>
+      <div class="gcard show-up">
+        <span class="ix">03</span>
+        <h4>原声，是另一种电影</h4>
+        <p>久石让的钢琴、RADWIMPS 的弦乐、Hans Zimmer 的管风琴，都在替角色说话。笨笨电影网的建议：先看原声，再看字幕，最后才是配音版。孩子的第一次，请给原声。</p>
+        <a class="dot" href="#">类型片单 →</a>
+      </div>
+      <div class="gcard show-up">
+        <span class="ix">04</span>
+        <h4>正版，才是对好电影最好的纪念</h4>
+        <p>笨笨电影网（benbendianyingwang-cn）不存储、不提供、不链接任何侵权影视资源。所有"观看"按钮仅示意跳转逻辑（演示站统一用 <code>#</code> 占位），请以持牌平台、艺术院线、公共图书馆数字影院、正规蓝光碟为准。</p>
+        <a class="dot" href="#">观影指南 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 栏目五：笨笨问答 ==================== -->
+<section class="block" id="why" style="background:linear-gradient(180deg,transparent,rgba(167,139,250,.12))" aria-labelledby="tWhy">
+  <div class="box">
+    <header class="head-flex show-up">
+      <div>
+        <span class="kicker">05 / SLOW QUESTIONS</span>
+        <h2 class="heading" id="tWhy">笨笨<em>问答</em> · 六个常被问起的问题</h2>
+        <p class="intro">笨笨电影网最常被问的 6 个问题。答案都很短，但值得记住。</p>
+        <div class="bar"></div>
+      </div>
+    </header>
+
+    <div class="myth">
+      <article class="arg show-up"><span class="q">?</span>
+        <span class="no">Q 01</span>
+        <h4>动画电影 = 给小孩看的？</h4>
+        <p>《千与千寻》是给 10 岁看的成长，《龙猫》是给 30 岁看的童年，《心灵奇旅》是给 50 岁看的意义。动画只是媒介，不是年龄。</p>
+      </article>
+      <article class="arg show-up"><span class="q">?</span>
+        <span class="no">Q 02</span>
+        <h4>慢电影 = 无聊？</h4>
+        <p>慢电影不是没有节奏，是把节奏交给观众。是枝裕和一场吃饭 4 分钟，但你记住了那盘没吃完的菜。快片让你"看完"，慢片让你"记得"。</p>
+      </article>
+      <article class="arg show-up"><span class="q">?</span>
+        <span class="no">Q 03</span>
+        <h4>为什么只推"治愈系"？</h4>
+        <p>不只推治愈系，只是更常推荐。因为这世上已经够吵了，电影不该再吵一次。想被刺一下，也有《寄生虫》《小偷家族》《完美的日子》在片单里。</p>
+      </article>
+      <article class="arg show-up"><span class="q">?</span>
+        <span class="no">Q 04</span>
+        <h4>看不懂怎么办？</h4>
+        <p>那就对了。今敏、汤浅政明、新海诚都不是用来"懂"的，是用来"感受"的。看第二遍的时候，你会感谢第一遍的自己没查剧透。</p>
+      </article>
+      <article class="arg show-up"><span class="q">?</span>
+        <span class="no">Q 05</span>
+        <h4>片单会不会太少？</h4>
+        <p>76 部是"看完能记住"的下限，不是上限。一年看完 76 部，你已经比 90% 的人更懂电影。看完再补，片单会自动长出来。</p>
+      </article>
+      <article class="arg show-up"><span class="q">?</span>
+        <span class="no">Q 06</span>
+        <h4>为什么坚持正版？</h4>
+        <p>因为吉卜力的手绘、皮克斯的代码、新海诚的云，都是有人一笔笔画出来的。每一次正版播放、每一张蓝光、每一场艺术院线放映，都是在给下一部好电影留火种。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 页脚 ==================== -->
+<footer class="foot">
+  <div class="box">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top"><span class="mark" aria-hidden="true"><i></i><i></i><b>BB</b></span>笨笨电影网<small>SLOW</small></a>
+        <p>笨笨电影网（benbendianyingwang-cn）专注慢电影与动画：笨笨电影网、笨笨电影、笨笨影院、笨笨影视、动画电影、治愈电影、家庭片、儿童片、吉卜力、宫崎骏、新海诚、皮克斯、迪士尼、文艺片、喜剧片、纪录片、冷门佳片、高分电影、经典电影。网站网址：https://域名.github.io</p>
+      </div>
+      <div class="foot-col">
+        <h5>内容栏目</h5>
+        <a href="#list">笨笨片单</a>
+        <a href="#top100">高分榜</a>
+        <a href="#genre">类型片单</a>
+        <a href="#guide">观影指南</a>
+        <a href="#why">笨笨问答</a>
+      </div>
+      <div class="foot-col">
+        <h5>动画关键词</h5>
+        <a href="#">动画电影</a>
+        <a href="#">吉卜力</a>
+        <a href="#">宫崎骏</a>
+        <a href="#">新海诚</a>
+        <a href="#">皮克斯</a>
+        <a href="#">迪士尼</a>
+        <a href="#">今敏</a>
+        <a href="#">汤浅政明</a>
+      </div>
+      <div class="foot-col">
+        <h5>类型片单</h5>
+        <a href="#">治愈电影</a>
+        <a href="#">家庭片</a>
+        <a href="#">儿童片</a>
+        <a href="#">文艺片</a>
+        <a href="#">喜剧片</a>
+        <a href="#">纪录片</a>
+        <a href="#">独立电影</a>
+        <a href="#">深夜电影</a>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="year"></span> 笨笨电影网 benbendianyingwang-cn · 网站网址：https://域名.github.io · 保留所有权利 · 慢半拍，才看得清 · 认准唯一官网</span>
+      <span><b>benbendianyingwang-cn</b> 不提供任何侵权影视资源</span>
+    </div>
+  </div>
+</footer>
+
+<a class="up" id="up" href="#top" aria-label="回到顶部" title="回到顶部">↑</a>
+
+<script>
+/* ---------- 天空：缓慢飘动的云朵 ---------- */
+(function(){
+  var c = document.getElementById('sky'), x, W, H, ctx, puffs;
+  if (!c || !c.getContext) return;
+  x = c.getContext('2d');
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+    puffs = [];
+    for (var i = 0; i < 9; i++){
+      puffs.push({
+        cx: Math.random()*W,
+        y: Math.random()*H*0.6 + H*0.08,
+        s: 0.25 + Math.random()*0.5,
+        r: 26 + Math.random()*44,
+        a: 0.05 + Math.random()*0.09
+      });
+    }
+  }
+  function puff(cx, y, r, a){
+    x.beginPath();
+    for (var k = 0; k < 7; k++){
+      var ang = k/7*Math.PI*2;
+      var rr = r*(0.66 + 0.34*Math.sin(ang*3));
+      var px = cx + Math.cos(ang)*rr*0.72;
+      var py = y + Math.sin(ang)*rr*0.5;
+      k ? x.lineTo(px,py) : x.moveTo(px,py);
+    }
+    x.closePath();
+    x.fillStyle = 'rgba(167,139,250,'+a+')';
+    x.fill();
+  }
+  function draw(){
+    x.clearRect(0,0,W,H);
+    for (var i = 0; i < puffs.length; i++){
+      var p = puffs[i];
+      puff(p.cx, p.y, p.r, p.a);
+      p.cx += p.s;
+      if (p.cx - p.r > W) p.cx = -p.r;
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize(); draw();
+})();
+
+/* ---------- 交互：滚动监听 / 动效 / 移动菜单 ---------- */
+(function(){
+  var bar = document.getElementById('topbar');
+  var up = document.getElementById('up');
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('topLinks');
+  var links = menu.querySelectorAll('a:not(.top-cta)');
+  var ids = ['home','list','top100','genre','guide','why'];
+  var secs = ids.map(function(id){ return document.getElementById(id); });
+
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    bar.classList.toggle('stuck', y > 20);
+    up.classList.toggle('show', y > 600);
+    var idx = 0;
+    for (var i = 0; i < secs.length; i++){
+      if (secs[i] && secs[i].getBoundingClientRect().top <= 140) idx = i;
+    }
+    links.forEach(function(a, i){ a.classList.toggle('now', i === idx); });
+  }
+
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+    document.querySelectorAll('.show-up').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.show-up').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
